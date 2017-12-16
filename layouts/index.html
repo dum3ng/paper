@@ -1,9 +1,43 @@
 {{ define "main" }}
-<h2>home index</h2>
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-    {{ .Content }}
+{{ if .Params.uuid }}
+  {{/* if there is uuid, then the card can be dismissed and will not display next time.*/}}
+<article class="card dismissable">
+
+  <div class="card-body">
+    <h4 class="card-title">{{ .Title }}</h4>
+    <p class="card-text">{{ .Content }}</p>
+    <a href="#" id="dismiss" class="btn btn-primary dismiss " data-uuid="{{ .Params.uuid }}">Dismiss</a>
+  </div>
+</article>
+
+  {{ else }}
+  <article class="card" style="width: 100%">
+    <div class="card-body">
+    {{  .Content }}
+    </div>
   </article>
-  {{/* Define a section to pull recent posts from. For Hugo 0.20 this will default to the section with the most number of pages. */}}
+
+{{ end }}
+
+ {{/*  pull recent posts, which are the posts recent with lastMod
+   */}}
+  <nav class="nav nav-pills nav-fill">
+  <a id="recents-tab" class="nav-item nav-link active" href="#">Recent Published</a>
+  <a id="updates-tab" class="nav-item nav-link" href="#">Recent Upgraded</a>
+</nav>
+  {{ $count := $.Param "recent_posts_number" | default 3}}
+<div id="recents" style="display: block;">
+
+  {{ $pages := (first $count .Site.Pages)}}
+  {{ range $pages }}
+    {{ .Summary }}  
+  {{ end }}
+</div>
+<div id="updates" style="display: none;">
+  <h2>updates</h2>
+</div>
+    
+  
   {{ $mainSections := .Site.Params.mainSections | default (slice "post") }}
   {{/* Create a variable with that section to use in multiple places. */}}
   {{ $section := where .Site.RegularPages "Section" "in" $mainSections }}

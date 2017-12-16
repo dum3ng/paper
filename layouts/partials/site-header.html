@@ -1,42 +1,56 @@
 <div class="nav-area">
-<aside class="mdc-persistent-drawer mdc-typography">
-  <nav class="mdc-persistent-drawer__drawer">
-    <header class="mdc-persistent-drawer__header">
-      <div class="mdc-persistent-drawer__header-content">
-        Header here
-      </div>
-    </header>
-    <nav id="icon-with-text-demo" class="mdc-persistent-drawer__content mdc-list">
-      <a class="mdc-list-item mdc-persistent-drawer--selected" href="#">
-        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
-      </a>
-      <a class="mdc-list-item" href="#">
-        <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-      </a>
-    </nav>
-  </nav>
-</aside>
-<header class="mdc-toolbar toolbar">
-  <div class="mdc-toolbar__row">
-    <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+<aside class="card drawer " data-simplebar> 
+    <div class="draw-content">
+        
+          <img class="avatar" src='{{ "img/avatar.png" | absURL }}' alt="avatar">
+          <p>{{ .Site.Params.biography }}</p>
 
-      <a href="#" class="material-icons mdc-toolbar__menu-icon toggle-menu"><img src='{{ "img/ic_menu_white_24px.svg" | absURL }}'></a>
-      <span class="mdc-toolbar__title">{{ $.Site.Title }} </span>
-    </section>
-    {{  $mobiles := .Site.Params.mobileToolbar }}
-    {{ if $mobiles }}
-        {{ range $mobiles}}
-            <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
-              {{ . }}
-            </section>
+    </div>
+<ul>
 
-        {{ end }}
+   {{ range .Site.Menus.main }}
+   {{ .Name }}
+              {{ if .HasChildren }}
+              <ul>
+              {{ range .Children }}
+                {{ .Name }}
+              {{ end }}
+                  
+              </ul>
+              {{ end }}
     {{ end }}
     
-  </div>
+</ul>
+</aside>
+
+
+<div class="toolbar">
+    
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+
+      <a href="#" class="bg-primary toggle-menu"><img src='{{ "img/ic_menu_white_24px.svg" | absURL }}'></a>
+
+      <a href='{{ $.Site.BaseURL }}'>
+        <span class="navbar-brand mb0">{{ $.Site.Title }} </span>
+      </a>
+
   
-</header>
+   
+    <ul class="nav justify-content-end">
+         {{  $mobiles := .Site.Params.mobileToolbar }}
+    {{ if $mobiles }}
+        {{ range $mobiles}}
+
+      <li class="nav-item ">
+        <a class="nav-link" href="#">{{ . }}</a>
+      </li>
+        {{ end }}
+    {{ end }}
+    </ul>
 
 
+</nav>
+</div>
 
 </div>
