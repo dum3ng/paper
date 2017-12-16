@@ -1,0 +1,42 @@
+<script src="{{ "js/jquery.min.js" | absURL }}" ></script>
+<script src="{{ "js/jquery.mCustomScrollbar.concat.min.js" | absURL }}" ></script>
+<script src="{{ "js/simplebar.js" | absURL }}" ></script>
+
+<script src="{{ "js/material-components-web.js" | absURL }}" ></script>
+<script type="text/javascript">
+     window.mdc.autoInit();
+     // $('body').mCustomScrollbar({scrollbarPosition: "inside"});
+let drawer = new mdc.drawer.MDCPersistentDrawer(document.querySelector('.mdc-persistent-drawer'));
+let navArea = document.querySelector('.nav-area');
+let toggle = document.querySelector('.toggle-menu');
+
+const closeDrawer = () => {
+        drawer.open = false;
+        navArea.style.pointerEvents = "none";
+};
+const openDrawer = () => {
+        drawer.open = true;
+        navArea.style.pointerEvents = "all";
+};
+const toggleDrawer = () => {
+   if(drawer.open){
+       closeDrawer();
+    }else{
+        openDrawer();
+    }
+};
+
+
+toggle.addEventListener('click', () => {
+   toggleDrawer();
+});
+  
+navArea.addEventListener('click', (e) => {
+    if(e.target === navArea) {
+        e.preventDefault();
+        if(drawer.open) {
+            closeDrawer();
+        }
+    }
+});
+</script>
