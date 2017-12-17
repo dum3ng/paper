@@ -1,20 +1,19 @@
 
 
 {{ define "main" }}
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
+
+    <article class="">
       <header>
-        <p class="f6 b helvetica tracked">
-          {{ humanize .Section | upper  }}
-        </p>
-        <h1 class="f1">
+        {{ partial "breadcrumb.html" .}}
+ 
+        <h1 class="">
           {{ .Title }}
         </h1>
       </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray markdown-body">
+      <div class=" markdown-body">
         {{ .Content }}
       </div>
     </article>
 
-  </div>
+
 {{ end }}

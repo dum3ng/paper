@@ -1,1 +1,16 @@
-<div class="footer"> foot is here</div>
+<div class="footer">
+    <div class="py-3 container-fluid">
+        <div class="row justify-content-center">
+          {{ partial "social-follow.html" . }}
+        </div>
+        <div class='row py-1'></div>
+        <div class="row justify-content-center">
+           <a class="copyright" href="{{ .Site.BaseURL }}" >
+    &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+          </a>  
+        </div>
+        <div class="row py-3"></div>
+    </div>
+
+</div>
+

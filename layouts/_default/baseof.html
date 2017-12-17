@@ -18,14 +18,13 @@
     {{ end }}
    
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
-     <link href='{{ "css/github-markdown.css" | absURL }}' rel='stylesheet' type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
 
-     <link href='{{ "css/simplebar.css" | absURL }}' rel='stylesheet' type="text/css" />
 
-     <link href='{{ "css/main.css" | absURL }}' rel='stylesheet' type="text/css" />
-     <link href='{{ "css/material-components-web.css" | absURL }}' rel='stylesheet' type="text/css" />
-     <link href='{{ "css/jquery.mCustomScrollbar.min.css" | absURL }}' rel='stylesheet' type="text/css" />
+     <link href='{{ "css/simplebar.css" | relURL }}' rel='stylesheet' type="text/css" />
+   
+     <link href='{{ "css/github-markdown.css" | relURL }}' rel='stylesheet' type="text/css" />
+     <link href='{{ "css/main.css" | relURL }}' rel='stylesheet' type="text/css" />
     {{ block "favicon" . }}
       {{ partial "site-favicon.html" . }}
     {{ end }}
@@ -49,13 +48,14 @@
   <body class=" ">
 
     {{ block "header" . }}{{ partial "site-header.html" .}}{{ end }}
-    <main class="pb7 site-main"  role="main">
-      <div class="site-content" data-simplebar>
+    <main class="pb7 site-main"  role="main" data-simplebar>
+      <div class="content site-content" >
 
         {{ block "main" . }}{{ end }}
 
-        {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
+       
       </div>  
+       {{ block "footer" . }}{{ partial "site-footer.html" . }}{{ end }}
     </main>
     {{ block "scripts" . }}{{ partial "site-scripts.html" . }}{{ end }}
   </body>
