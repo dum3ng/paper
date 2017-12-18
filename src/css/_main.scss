@@ -3,7 +3,7 @@ $d-secondary:  #636B46;
 $d-high: #CDA34F;
 $d-low: #373F27;
 $disabled: #868e96;
-$duration: 2s;
+$duration: 0.6s;
 $drawerWidth: 240px;
 $maxDrawerWidth: 300px;
 
@@ -78,24 +78,51 @@ a {
     pointer-events: all;
     flex: 1;
     transition: height $duration  ease;
+
 }
-.menu-first-bar, .menu-third-bar{
+.menu-icon {
+    width: 30px;
+    height: 22.5px;
+    position: relative;
+}
+.menu-bar {
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: $d-high;
+}
+.menu-top-bar {
+}
+.menu-middle-bar {
+    top: 9px;
+}
+.menu-bottom-bar {
+    top: 18px;
+}
+.menu-top-bar, .menu-bottom-bar{
     transform: rotate(0deg);
     transform-origin: 0% 50%;
-    transition: transform $duration ease;
+    transition: transform $duration ease,
+    top $duration ease,
+    left $duration ease;
 }
 .close-menu {
-    .menu-first-bar {
+    .menu-top-bar {
         transform: rotate(45deg);
+        top:-1.5px;
+        left: 4px;
    }
     
-    .menu-second-bar {
+    .menu-middle-bar {
         opacity: 0;
         transition: opacity $duration ease;
     }
 
-    .menu-third-bar {
+    .menu-bottom-bar {
         transform: rotate(-45deg);
+        top: 19.5px;
+        left: 4px;
     }
 }
 .navbar.header {
@@ -200,6 +227,17 @@ main {
        transition: padding $duration ease;
     }
 }
+.summary {
+    .summary-img {
+        height: 100px;
+        width: 100%;
+        border-top-left-radius: calc(0.125rem - 1px);
+        border-top-right-radius: calc(0.125rem - 1px); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+}
 .card-img-left {
     width: 100px;
     height: 100px;
@@ -218,7 +256,19 @@ main {
        }
     }
 }
-
+ul.pagination {
+    margin:auto;
+    li{
+        padding-left: 5px;
+        padding-right: 5px; 
+        &.disabled {
+            
+        }
+        &.active {
+            
+        }
+    }  
+}
 /* footer */
 .footer {
     height: 100px;
@@ -315,6 +365,16 @@ main {
             padding: 1rem 1rem 4rem 1rem;
         }
     }
+    .summary {
+        flex-direction: row;
+        .summary-img {
+            min-width: 180px;
+            width: 30%;
+            height: inherit;
+            border-top-left-radius: calc(0.125rem - 1px);
+            border-bottom-left-radius: calc(0.125rem - 1px); 
+        }
+    }
  }
 
 /*// Large devices (desktops, 992px and up)*/
@@ -336,6 +396,11 @@ main {
         }
         &.list-content {
             padding: 1rem 2rem 4rem 2rem;
+        }
+    }
+    .summary {
+        .summary-img {
+            max-width: 300px;
         }
     }
 }

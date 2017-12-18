@@ -1,9 +1,10 @@
 {{ $featured_image := .Params.featured_image }}
 
-<div class="card flex-column" >
-  <img class="card-img-left" src='{{ $featured_image | relURL }}'>
-    
-  </img>
+<div class="card summary" >
+    <div class="summary-img"
+style='background-image:url("{{ $featured_image | relURL }}")'
+   > 
+  </div>
   <div class="card-body">
     <h3 class="card-title">
       {{ .Title }}

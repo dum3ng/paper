@@ -1,5 +1,6 @@
+
 {{ define "main" }}
-  
+<h2>tags </h2>
   <article class="">
       <h2> {{ .Title }}</h2>
 
@@ -18,7 +19,7 @@
     <section class="">
       {{ range  .Data.Pages }}
         <div class="">
-          {{ partial "summary.html" . }}
+            {{ .Name }}
         </div>
         <div class="py-1"></div>
       {{ end }}

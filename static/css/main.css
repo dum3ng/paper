@@ -60,20 +60,42 @@ a {
   height: 50px;
   pointer-events: all;
   flex: 1;
-  transition: height 2s ease; }
+  transition: height 0.6s ease; }
 
-.menu-first-bar, .menu-third-bar {
+.menu-icon {
+  width: 30px;
+  height: 22.5px;
+  position: relative; }
+
+.menu-bar {
+  position: absolute;
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: #CDA34F; }
+
+.menu-middle-bar {
+  top: 9px; }
+
+.menu-bottom-bar {
+  top: 18px; }
+
+.menu-top-bar, .menu-bottom-bar {
   transform: rotate(0deg);
   transform-origin: 0% 50%;
-  transition: transform 2s ease; }
+  transition: transform 0.6s ease, top 0.6s ease, left 0.6s ease; }
 
-.close-menu .menu-first-bar {
-  transform: rotate(45deg); }
-.close-menu .menu-second-bar {
+.close-menu .menu-top-bar {
+  transform: rotate(45deg);
+  top: -1.5px;
+  left: 4px; }
+.close-menu .menu-middle-bar {
   opacity: 0;
-  transition: opacity 2s ease; }
-.close-menu .menu-third-bar {
-  transform: rotate(-45deg); }
+  transition: opacity 0.6s ease; }
+.close-menu .menu-bottom-bar {
+  transform: rotate(-45deg);
+  top: 19.5px;
+  left: 4px; }
 
 .navbar.header {
   flex-wrap: nowrap !important;
@@ -92,13 +114,13 @@ a {
   margin-left: -240px;
   background: #E9E7DA;
   pointer-events: all;
-  transition: width 2s ease, margin-left 2s ease; }
+  transition: width 0.6s ease, margin-left 0.6s ease; }
   .drawer.show {
     margin-left: 0px;
-    animation: 2s ease slidein; }
+    animation: 0.6s ease slidein; }
   .drawer.hide {
     margin-left: -240px;
-    animation: 2s ease slideout; }
+    animation: 0.6s ease slideout; }
 
 .drawer-content {
   width: 100%;
@@ -142,17 +164,26 @@ main {
    left: 0px;*/
   width: 100%;
   height: 100%;
-  transition: margin-left 2s ease, width 2s ease; }
+  transition: margin-left 0.6s ease, width 0.6s ease; }
 
 .content {
   width: 100%;
   height: 100%; }
   .content.site-content {
     padding: 4rem 1rem 0 1rem;
-    transition: padding 2s ease; }
+    transition: padding 0.6s ease; }
   .content.list-content {
     padding: 1rem 0.5rem 2rem 0.5rem;
-    transition: padding 2s ease; }
+    transition: padding 0.6s ease; }
+
+.summary .summary-img {
+  height: 100px;
+  width: 100%;
+  border-top-left-radius: calc(0.125rem - 1px);
+  border-top-right-radius: calc(0.125rem - 1px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%; }
 
 .card-img-left {
   width: 100px;
@@ -162,6 +193,12 @@ main {
 /* post */
 .breadcrumb li.active a {
   color: #868e96; }
+
+ul.pagination {
+  margin: auto; }
+  ul.pagination li {
+    padding-left: 5px;
+    padding-right: 5px; }
 
 /* footer */
 .footer {
@@ -180,7 +217,7 @@ main {
 
 .social svg path {
   fill: #E9E7DA;
-  transition-duration: 2s;
+  transition-duration: 0.6s;
   transition-timing-function: ease-in; }
 
 .email svg:hover #email {
@@ -233,7 +270,16 @@ main {
   .content.site-content {
     padding: 1rem 2rem 2rem 2rem; }
   .content.list-content {
-    padding: 1rem 1rem 4rem 1rem; } }
+    padding: 1rem 1rem 4rem 1rem; }
+
+  .summary {
+    flex-direction: row; }
+    .summary .summary-img {
+      min-width: 180px;
+      width: 30%;
+      height: inherit;
+      border-top-left-radius: calc(0.125rem - 1px);
+      border-bottom-left-radius: calc(0.125rem - 1px); } }
 /*// Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
   .drawer {
@@ -246,7 +292,10 @@ main {
   .content.site-content {
     padding: 1rem 4rem 2rem 4rem; }
   .content.list-content {
-    padding: 1rem 2rem 4rem 2rem; } }
+    padding: 1rem 2rem 4rem 2rem; }
+
+  .summary .summary-img {
+    max-width: 300px; } }
 /*// Extra large devices (large desktops, 1200px and up)*/
 /*@media (min-width: 1200px) { ... }*/
 @keyframes expand {

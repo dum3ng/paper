@@ -4,8 +4,9 @@
         <div class="py-2"></div>
         
         <div class="card mx-auto avatar">
-            
-          <img class=" avatar" src='{{ "img/avatar.png" | relURL }}' alt="avatar">
+            <a href='{{ $.Site.BaseURL }} '>
+         <img class=" avatar" src='{{ "img/avatar.png" | relURL }}' alt="avatar">
+            </a>
         </div>
             
 
@@ -56,11 +57,17 @@
 
 <nav class="navbar navbar-expand-lg  navbar-bg header">
       <a href="#" class="navbar-brand toggle-menu d-flex align-items-center ">
-        {{ partial "svg/menu.svg" . }}</a>
-
-     <span class="navbar-text site-title mr-auto"> <a href='{{ $.Site.BaseURL }}'>
-        {{ $.Site.Title }} 
-      </a></span>
+          <div class="menu-icon">
+              <span class="menu-bar menu-top-bar"></span>
+              <span class="menu-bar menu-middle-bar"></span>
+              <span class="menu-bar menu-bottom-bar"></span>
+          </div>
+      </a>
+      <span class="navbar-text site-title mr-auto">
+          <a href='{{ $.Site.BaseURL }}'>
+              {{ $.Site.Title }} 
+          </a>
+     </span>
 
   
    
