@@ -56,24 +56,49 @@ a {
   flex-direction: row; }
 
 .toolbar {
+  width: 100%;
   height: 50px;
   pointer-events: all;
-  flex: 1; }
+  flex: 1;
+  transition: height 2s ease; }
+
+.menu-first-bar, .menu-third-bar {
+  transform: rotate(0deg);
+  transform-origin: 0% 50%;
+  transition: transform 2s ease; }
+
+.close-menu .menu-first-bar {
+  transform: rotate(45deg); }
+.close-menu .menu-second-bar {
+  opacity: 0;
+  transition: opacity 2s ease; }
+.close-menu .menu-third-bar {
+  transform: rotate(-45deg); }
+
+.navbar.header {
+  flex-wrap: nowrap !important;
+  justify-content: flex-start; }
+
+.site-title.navbar-text {
+  white-space: nowrap; }
+
+.nav.extra {
+  flex-wrap: nowrap; }
 
 .drawer {
+  flex-shrink: 0;
   height: 100%;
   width: 240px;
   margin-left: -240px;
   background: #E9E7DA;
-  pointer-events: all; }
-
-.drawer.show {
-  margin-left: 0px;
-  animation: 2s ease-in slidein; }
-
-.drawer.hide {
-  margin-left: -240px;
-  animation: 2s ease-out slideout; }
+  pointer-events: all;
+  transition: width 2s ease, margin-left 2s ease; }
+  .drawer.show {
+    margin-left: 0px;
+    animation: 2s ease slidein; }
+  .drawer.hide {
+    margin-left: -240px;
+    animation: 2s ease slideout; }
 
 .drawer-content {
   width: 100%;
@@ -81,25 +106,31 @@ a {
 
 .toggle-menu {
   cursor: hand; }
-  .toggle-menu svg #menu-path {
+  .toggle-menu svg.menu-icon {
     fill: #CDA34F; }
 
 ul.hoverable {
   list-style: none; }
   ul.hoverable li {
-    border: solid 1px;
     display: block;
     height: 50px;
     position: relative; }
+    ul.hoverable li a {
+      display: block;
+      height: 100%;
+      line-height: 50px; }
     ul.hoverable li ul.hovered {
       list-style: none;
-      display: none; }
+      display: none !important; }
+      ul.hoverable li ul.hovered li {
+        width: calc(100% - $drawerWidth);
+        max-width: 144px; }
     ul.hoverable li:hover ul.hovered {
-      display: block;
+      display: flex;
       position: absolute;
       top: 0;
       left: 50%;
-      width: 200px;
+      width: 192px;
       height: 50px;
       padding-left: 0;
       transform: translate(50%, 0); }
@@ -110,15 +141,23 @@ main {
    top: 0px;
    left: 0px;*/
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  transition: margin-left 2s ease, width 2s ease; }
 
 .content {
   width: 100%;
   height: 100%; }
   .content.site-content {
-    padding: 4rem 20px 50px 20px; }
+    padding: 4rem 1rem 0 1rem;
+    transition: padding 2s ease; }
   .content.list-content {
-    padding: 1rem 20px 50px 20px; }
+    padding: 1rem 0.5rem 2rem 0.5rem;
+    transition: padding 2s ease; }
+
+.card-img-left {
+  width: 100px;
+  height: 100px;
+  display: inline-block; }
 
 /* post */
 .breadcrumb li.active a {
@@ -141,7 +180,7 @@ main {
 
 .social svg path {
   fill: #E9E7DA;
-  transition-duration: 0.5;
+  transition-duration: 2s;
   transition-timing-function: ease-in; }
 
 .email svg:hover #email {
@@ -180,21 +219,36 @@ main {
 /*// Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
   .toolbar {
-    display: none; }
+    height: 0;
+    overflow: hidden; }
 
   .drawer {
     width: 30%;
-    max-width: 300px;
-    animation: 2s slidein !important;
     margin-left: 0px !important; }
 
   main {
     margin-left: 30%;
-    width: 70%;
-    animation: 2s shrink; }
+    width: 70%; }
 
-  .site-content {
-    padding: 50px 50px 0px 50px; } }
+  .content.site-content {
+    padding: 1rem 2rem 2rem 2rem; }
+  .content.list-content {
+    padding: 1rem 1rem 4rem 1rem; } }
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+  .drawer {
+    width: 300px; }
+
+  main {
+    margin-left: 300px;
+    width: calc(100% - 300px); }
+
+  .content.site-content {
+    padding: 1rem 4rem 2rem 4rem; }
+  .content.list-content {
+    padding: 1rem 2rem 4rem 2rem; } }
+/*// Extra large devices (large desktops, 1200px and up)*/
+/*@media (min-width: 1200px) { ... }*/
 @keyframes expand {
   from {
     width: 0; }
@@ -207,19 +261,15 @@ main {
   to {
     width: 70%;
     margin-left: 30%; } }
-@keyframes slidein {
+@keyframes fadeout {
   from {
-    margin-left: -240px; }
+    opacity: 1; }
   to {
-    margin-left: 0; } }
+    opacity: 0; } }
 @keyframes slideout {
   from {
     margin-left: 0; }
   to {
     margin-left: -240px; } }
-/*// Large devices (desktops, 992px and up)*/
-/*@media (min-width: 992px) { ... }*/
-/*// Extra large devices (large desktops, 1200px and up)*/
-/*@media (min-width: 1200px) { ... }*/
 
 /*# sourceMappingURL=main.css.map */

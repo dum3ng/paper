@@ -1,72 +1,16 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  
-<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js" integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe" crossorigin="anonymous"></script>
-
-<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-
-
-<script src="{{ "js/simplebar.js" | relURL }}" ></script>
-
-<script type="text/javascript">
-(function(){
-
-let drawer = document.querySelector(".drawer");
-let navArea = document.querySelector('.nav-area');
-let toggle = document.querySelector('.toggle-menu');
-
-const closeDrawer = () => {
-        // drawer.open = false;
-        drawer.classList.remove('show');
-        drawer.classList.add('hide');
-
-        navArea.style.pointerEvents = "none";
-};
-const openDrawer = () => {
-        // drawer.open = true;
-        drawer.classList.add('show');
-        drawer.classList.remove('hide');
-
-        navArea.style.pointerEvents = "all";
-};
-const toggleDrawer = () => {
-   if(drawer.classList.contains("show")){
-       closeDrawer();
-    }else{
-        openDrawer();
-    }
-};
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+  crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/js/bootstrap-material-design.js"
+  integrity="sha384-3xciOSDAlaXneEmyOo0ME/2grfpqzhhTcM4cE32Ce9+8DW/04AGoTACzQpphYGYe"
+  crossorigin="anonymous"></script>
 
 
-toggle.addEventListener('click', () => {
-   toggleDrawer();
-});
-  
-navArea.addEventListener('click', (e) => {
-    if(e.target === navArea) {
-        e.preventDefault();
-        if(drawer.classList.contains("show")) {
-            closeDrawer();
-        }
-    }
-});
+<script src='{{"js/simplebar.js" | relURL }}'></script>
 
-let dismiss = document.querySelector('.dismiss');
-if(dismiss){
-  let article = document.querySelector('.dismissable');
-  let uuid = dismiss.dataset["uuid"];
-  let hasExist = window.localStorage.getItem(uuid);
-  if(hasExist){
-    article.style.display = "none";
-  }
-    dismiss.onclick = (e) => {
-      window.localStorage.setItem(uuid, true);
-      article.style.display = "none";
-    };
-    
-}
-
-})();
-
+<script type="text/javascript" src='{{"js/index.js" | relURL}}'>
+ 
 </script>

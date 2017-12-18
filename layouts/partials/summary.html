@@ -1,26 +1,8 @@
 
-<div class="card" >
-  <div class="card-body">
-    <h3 class="card-title">
-      {{ .Title }}
-    </h3>
-    <span class="text-muted">
-      {{ .Date.Format "2006-01-02"}}
-    </span>
-    {{ if .Params.tags }}
-      <span class="card-subtitle text-muted">
-        tags: 
-        {{ range .Params.tags }}
-            <span> {{ . }} </span>
-        {{ end }}
-      </span>
-    {{ end }}
-    <div class="pb-1"></div>
-    <div class="card-text">
-      {{ .Summary }}
-    </div>
-    <div class="py-1"></div>
-     <a class="card-link" href="{{ .RelPermalink }}">Read More…</a>
-   
-  </div>
-</div>
+<!-- will choose between summary-without-image.html and 
+summary-with-image.html -->
+ {{ if .Params.featured_image }}
+       {{ partial "summary-with-image.html" . }}
+  {{ else }}
+        {{ partial "summary-without-image.html" . }}
+{{ end }}

@@ -24,17 +24,20 @@
           
           <div class="py-3"></div>
 
-        <ul class=" hoverable ">
+
+        
+
+        <ul class="d-flex flex-column align-items-end justify-content-start hoverable ">
 
             {{ range .Site.Menus.main }}
-              <li class="">
-                 <a href="{{ .URL }}">{{ .Name }}</a> 
+                
+                <li id="{{ .Name }}" class=' mb-1' style="width: 80%"> <a class="card my-auto text-right pr-3  " href="{{ .URL }}"> {{ .Name }}</a> 
                   {{ if .HasChildren }}
-                  <ul class="hovered" >
+
+                  <ul id='{{ .Name | printf "%s-%s" "children"}}' class="d-flex flex-column align-items-start justify-content-start hovered" >
                       {{ range .Children }}
-                      <li>
-                        <a class="" href="{{.URL}}"> {{ .Name }} </a>   
-                      </li>
+                         <li  > <a class="card" href="{{.URL}}"> {{ .Name }} </a> </li>
+                    
                
                       {{ end }}
                   </ul>
@@ -51,27 +54,16 @@
 <div class="toolbar">
     
 
-<nav class="navbar navbar-expand-lg  navbar-bg">
-      <a href="#" class="navbar-brand toggle-menu">
+<nav class="navbar navbar-expand-lg  navbar-bg header">
+      <a href="#" class="navbar-brand toggle-menu d-flex align-items-center ">
         {{ partial "svg/menu.svg" . }}</a>
 
-      <a href='{{ $.Site.BaseURL }}'>
-        <span class="navbar-brand mb0">{{ $.Site.Title }} </span>
-      </a>
+     <span class="navbar-text site-title mr-auto"> <a href='{{ $.Site.BaseURL }}'>
+        {{ $.Site.Title }} 
+      </a></span>
 
   
    
-    <ul class="nav justify-content-end">
-         {{  $mobiles := .Site.Params.mobileToolbar }}
-    {{ if $mobiles }}
-        {{ range $mobiles}}
-
-      <li class="nav-item ">
-        <a class="nav-link" href="#">{{ . }}</a>
-      </li>
-        {{ end }}
-    {{ end }}
-    </ul>
 
 
 </nav>

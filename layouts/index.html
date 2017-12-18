@@ -39,7 +39,7 @@
   <div class="tab-pane active" id="publish" role="tabpanel">
      {{ $pages := (first $count .Site.RegularPages.ByDate.Reverse )}}
   {{ range $pages }}
-      {{ partial "summary-with-image.html" . }}
+        {{ partial "summary.html" . }}
   {{ end }}
   </div>
   <div class="tab-pane" id="update" role="tabpanel">
@@ -48,7 +48,7 @@
        {{ range .Site.RegularPages }}
           {{ if (gt $counter 0) }}
             {{ if (gt .Lastmod .Date ) }}
-                {{ partial "summary-with-image.html" .}}
+                  {{ partial "summary.html" . }}
                 {{ $counter := (sub $counter 1)}}
             {{ end }}
           {{ end }}
