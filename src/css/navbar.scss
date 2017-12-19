@@ -1,0 +1,197 @@
+@import "variables";
+
+.navbar-bg {
+    background: $d-secondary;
+}
+.avatar {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: yellow;
+}
+/* override bootstrap */
+.btn.btn-primary {
+    color: $d-high;
+}
+
+.nav-tabs .nav-link.active {
+
+    border-color: $d-secondary;
+}
+.nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover {
+    border-color: $d-high;
+}
+#dismiss {
+    &:hover {
+        color: #CD8446;
+    }
+}
+
+/* head toolbar and drawer */
+.nav-area {
+    position: fixed;
+    z-index: 10;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+}
+.toolbar {
+    width: 100%;
+    height: 50px;
+    pointer-events: all;
+    flex: 1;
+    transition: height $duration  ease;
+
+}
+.menu-icon {
+    width: 30px;
+    height: 22.5px;
+    position: relative;
+}
+.menu-bar {
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: $d-high;
+}
+.menu-top-bar {
+}
+.menu-middle-bar {
+    top: 9px;
+}
+.menu-bottom-bar {
+    top: 18px;
+}
+.menu-top-bar, .menu-bottom-bar{
+    transform: rotate(0deg);
+    transform-origin: 0% 50%;
+    transition: transform $duration ease,
+    top $duration ease,
+    left $duration ease;
+}
+.menu-middle-bar {
+    transition: opacity $duration ease;
+}
+.close-menu {
+    .menu-top-bar {
+        transform: rotate(45deg);
+        top:-1.5px;
+        left: 4px;
+   }
+
+    .menu-middle-bar {
+        opacity: 0;
+    }
+
+    .menu-bottom-bar {
+        transform: rotate(-45deg);
+        top: 19.5px;
+        left: 4px;
+    }
+}
+.navbar.header {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start;
+}
+.site-title.navbar-text {
+    white-space: nowrap;
+}
+.nav.extra {
+    flex-wrap: nowrap ;
+}
+.drawer {
+    flex-shrink: 0;
+    height: 100%;
+    width: $drawerWidth;
+    margin-left: -$drawerWidth;
+    background: $d-primary;
+    pointer-events: all;
+    transition: width $duration ease,
+               // max-width $duration ease,
+                margin-left $duration ease;
+    &.show {
+        margin-left: 0px;
+    }
+    &.hide {
+        margin-left: -$drawerWidth;
+    }
+}
+.drawer-content {
+    width: 100%;
+    height: 100%;
+
+}
+.toggle-menu {
+    cursor: hand;
+    svg.menu-icon{
+        fill: $d-high;
+    }
+}
+ul.hoverable {
+    list-style: none;
+    li {
+        display: block;
+        height: 50px;
+        position: relative;
+        a {
+            display: block;
+            height: 100%;
+            line-height: 50px;
+        }
+        ul.hovered {
+            list-style: none;
+            display: none !important;
+            li {
+                width: calc(100% - $drawerWidth);
+                max-width: $drawerWidth * 0.6;
+            }
+        }
+        &:hover {
+            ul.hovered {
+                display: flex;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: $drawerWidth * 0.8;
+                height: 50px;
+                padding-left: 0;
+                transform: translate(50%, 0);
+            }
+        }
+    }
+
+
+}
+
+@media (min-width: 768px) {
+    .toolbar {
+        height: 0;
+        overflow: hidden;
+    }
+    .drawer {
+        width: 30%;
+
+        margin-left: 0px !important;
+    }
+}
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+
+    .drawer {
+        width: $maxDrawerWidth;
+    }
+}

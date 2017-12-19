@@ -1,0 +1,57 @@
+
+@import "variables";
+/*social icons */
+.socials {
+
+}
+.social {
+    display: inline-block;
+    /*width: 30px ;*/
+    /*height: 30px;*/
+    /*border-radius: 50%;*/
+    /*background-color: red; */
+}
+.social svg path{
+    fill: $d-primary;
+    transition-duration: $duration;
+    transition-timing-function: ease-in;
+}
+
+.email svg:hover #email {
+    fill: #3294C5 !important;
+}
+
+.facebook svg:hover #facebook{
+    fill: #3b5998 !important;
+}
+
+.github svg:hover #github{
+    fill: #24292E !important;
+}
+
+.instagram svg:hover #instagram {
+    fill: #e95950 !important;
+}
+
+.linkedin svg:hover #linkedin {
+    fill: #007bb5 !important;
+}
+
+.rss svg:hover #rss {
+    fill: #ff6600 !important;
+}
+.sinaweibo svg:hover #sinaweibo {
+    fill: #cb2027 !important;
+}
+.stackoverflow svg:hover #stackoverflow {
+    fill: #F58238 !important;
+}
+
+.twitter svg:hover #twitter {
+    fill: #55acee !important;
+}
+
+.youtube svg:hover #youtube {
+    fill: #ff0000 !important;
+}
+
