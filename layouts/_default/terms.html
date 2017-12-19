@@ -1,23 +1,53 @@
 
 {{ define "main" }}
-    {{ $data := .Data }}
-  <article class="cf pa3 pa4-m pa4-l">
-    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
-      {{ .Content }}
+{{ $data := .Data }}
+<h3>{{ .Title }}</h3>
+{{if .Content }}
+<div class="card">
+    
+<div class="card-body">
+    <div class="card-text">
+        {{ .Content}}
     </div>
-  </article>
-  <div class="mw8 center">
-    <section class="ph4">
-      {{ range $key, $value := .Data.Terms }}
-        <h2 class="f1">
-          <a href="{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}" class="link blue hover-black">
-            {{ $.Data.Singular | humanize }}: {{ $key }}
-          </a>
-        </h2>
-        {{ range $value.Pages }}
-          {{ partial "summary.html" . }}
+</div>
+</div>
+{{end }}
+    <ul class="nav nav-tabs " id="tagsNav" role="tablist">
+        {{ $.Scratch.Set "active" "active" }}
+        {{ range $key, $value := .Data.Terms }}
+        <li class="nav-item nav-link tag-item" >
+            <a class='{{ $.Scratch.Get "active"}}' data-toggle="tab" href='{{ printf "#tag-%s" $key }}' role="tab">
+            {{ $key }}
+            </a>
+        </li>
+        {{ $.Scratch.Set "active" "" }}
         {{ end }}
-      {{ end }}
-    </section>
-  </div>
+
+    </ul>
+    <div class="py-2">
+        
+    </div>
+<div class="tab-content">
+{{ $.Scratch.Set "active" "active" }}
+
+{{ range $key, $value := .Data.Terms }}
+    <div class='tab-pane {{ $.Scratch.Get "active" }}'   id='{{printf "tag-%s" $key}}' role="tabpanel">
+{{/* get the last 10 most post in this tag and show more link if there are more left */}}        
+        {{ $recents := (first 10 $value.Pages)}}
+        {{ if gt (len $value.Pages ) 10 }}
+        <a href='{{ "/" | relLangURL }}{{ $.Data.Plural | urlize }}/{{ $key | urlize }}'>All...</a>
+        {{end }}
+        {{ range $recents }}
+        {{ partial "summary.html" .}}
+        <div class="py-1">
+            
+        </div>
+        {{ end }}
+    </div>
+    {{ $.Scratch.Set "active" "" }}
+{{ end }}
+</div>
+<div class="py-3">
+    
+</div>
 {{ end }}
